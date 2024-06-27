@@ -13,7 +13,7 @@ namespace BankDataAccessLayer
 			bool IsFound = false;
 			using (SqlConnection connection = new SqlConnection(ClsDataAccessSettings.ConnectionString))
 			{
-				string query = "select * from Users where UserName = @UserName";
+				string query = "select * from BK.Users where UserName = @UserName";
 
 				using (SqlCommand command = new SqlCommand(query, connection))
 				{
@@ -30,14 +30,12 @@ namespace BankDataAccessLayer
 								IsFound = true;
 								FirstName = (string)reader["FirstName"];
 								LastName = (string)reader["LastName"];
-								if (!Convert.IsDBNull((string)reader["Phone"]))
+								if (reader["Phone"] != DBNull.Value)
 								{
 									Phone = (string)reader["Phone"];
 								}
-
-								Phone = (string)reader["Phone"];
 								Email = (string)reader["Email"];
-								Gender = (char)reader["Gender"];
+								Gender = Convert.ToChar(reader["Gender"].ToString().Trim());
 								DateOfBirth = (DateTime)reader["DateOfBirth"];
 								Password = (string)reader["Password"];
 								Permissions = (int)reader["Permissions"];
@@ -183,7 +181,11 @@ namespace BankDataAccessLayer
 			command.Parameters.AddWithValue("@UserName", UserName);
 			command.Parameters.AddWithValue("@FirstName", FirstName);
 			command.Parameters.AddWithValue("@LastName", LastName);
-			command.Parameters.AddWithValue("@Phone", Phone);
+			if (Phone != null && Phone != "")
+				command.Parameters.AddWithValue("@Phone", Phone);
+			else
+				command.Parameters.AddWithValue("@Phone", DBNull.Value);
+
 			command.Parameters.AddWithValue("@Email", Email);
 			command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
 			command.Parameters.AddWithValue("@Gender", Gender);
