@@ -1,54 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BankBusinessLayer;
+using System;
 using System.Windows.Forms;
-using BankBusinessLayer;
 
 namespace systemBank
 {
-    public partial class frmLogin : Form
-    {
-        public frmLogin()
-        {
-            InitializeComponent();
-        }
-       
-        //bool IsUserClosing = true;
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            string username = txtUserName.Text.Trim();
-            string password = txtPassword.Text;
+	public partial class frmLogin : Form
+	{
+		public frmLogin()
+		{
+			InitializeComponent();
+		}
 
-            clsUser user = clsUser.FindByUserNameAndPassword(username, password);
+		//bool IsUserClosing = true;
+		private void btnLogin_Click(object sender, EventArgs e)
+		{
+			string username = txtUserName.Text.Trim();
+			string password = txtPassword.Text;
 
-            if (user != null)
-            {
-                frmHome frm = new frmHome(user);
+			clsUser user = clsUser.FindByUserNameAndPassword(username, password);
 
-                this.Hide();
-                //this.Visible = false;
-                frm.ShowDialog();
-                this.Visible = true;
+			if (user != null)
+			{
+				frmHome frm = new frmHome(user);
 
-               // txtUserName.Text = "";
-                //txtPassword.Text = "";
-            }
-            else
-            {
-                MessageBox.Show("Incorrect username or password");
-            }
-        }
+				this.Hide();
+				//this.Visible = false;
+				frm.ShowDialog();
+				this.Visible = true;
 
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
+				// txtUserName.Text = "";
+				//txtPassword.Text = "";
+			}
+			else
+			{
+				MessageBox.Show("Incorrect username or password");
+			}
+		}
 
-            txtUserName.Text = "User";
-            txtPassword.Text = "12345";
-        }
-    }
+		private void frmLogin_Load(object sender, EventArgs e)
+		{
+
+			txtUserName.Text = "User";
+			txtPassword.Text = "1234";
+		}
+	}
 }
