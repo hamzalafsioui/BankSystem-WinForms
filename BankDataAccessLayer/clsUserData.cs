@@ -129,7 +129,7 @@ namespace BankDataAccessLayer
 		{
 			int UserID = -1;
 			SqlConnection connection = new SqlConnection(ClsDataAccessSettings.ConnectionString);
-			string query = "INSERT INTO Users(UserName,FirstName,LastName,Phone,Email,Gender,DateOfBirth,Password,Permissions)" +
+			string query = "INSERT INTO BK.Users(UserName,FirstName,LastName,Phone,Email,Gender,DateOfBirth,Password,Permissions)" +
 				" VALUES (@UserName,@FirstName,@LastName,@Phone,@Email,@Gender,@DateOfBirth,@Password,@Permissions);" +
 				"SELECT SCOPE_IDENTITY();";
 			SqlCommand command = new SqlCommand(query, connection);

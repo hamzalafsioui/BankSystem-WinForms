@@ -1,27 +1,24 @@
 ﻿using BankBusinessLayer;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace systemBank
 {
-    public partial class frmAllUsers : Form
-    {
-        public frmAllUsers()
-        {
-            InitializeComponent();
-            ShowAllUsers();
-        }
+	public partial class frmAllUsers : Form
+	{
 
-        private void ShowAllUsers()
-        {
-            dgvAllUsers.DataSource = clsUser.GetAllUsers();
-        }
-    }
+		public frmAllUsers()
+		{
+			InitializeComponent();
+			ShowAllUsers();
+		}
+
+		private void ShowAllUsers()
+		{
+			dgvAllUsers.DataSource = clsUser.GetAllUsers();
+			dgvAllUsers.Columns[0].HeaderText = "User ID";
+			dgvAllUsers.Columns[1].HeaderText = "User Name";
+			dgvAllUsers.Columns[2].HeaderText = "Full Name";
+		}
+
+	}
 }
