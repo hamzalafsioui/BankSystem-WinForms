@@ -238,10 +238,10 @@
 			// rbMale
 			// 
 			this.rbMale.AutoSize = true;
-			this.rbMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.rbMale.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.rbMale.Location = new System.Drawing.Point(389, 32);
 			this.rbMale.Name = "rbMale";
-			this.rbMale.Size = new System.Drawing.Size(61, 24);
+			this.rbMale.Size = new System.Drawing.Size(63, 25);
 			this.rbMale.TabIndex = 15;
 			this.rbMale.TabStop = true;
 			this.rbMale.Text = "Male";
@@ -260,10 +260,10 @@
 			// rbFemale
 			// 
 			this.rbFemale.AutoSize = true;
-			this.rbFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.rbFemale.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.rbFemale.Location = new System.Drawing.Point(462, 32);
 			this.rbFemale.Name = "rbFemale";
-			this.rbFemale.Size = new System.Drawing.Size(80, 24);
+			this.rbFemale.Size = new System.Drawing.Size(79, 25);
 			this.rbFemale.TabIndex = 17;
 			this.rbFemale.TabStop = true;
 			this.rbFemale.Text = "Female";

@@ -35,24 +35,24 @@
 			this.rbFemale = new System.Windows.Forms.RadioButton();
 			this.rbMale = new System.Windows.Forms.RadioButton();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+			this.btnAddUser = new System.Windows.Forms.Button();
 			this.gbPernissions = new System.Windows.Forms.GroupBox();
 			this.chkCurrency = new System.Windows.Forms.CheckBox();
 			this.chkTransactions = new System.Windows.Forms.CheckBox();
 			this.chkManageUser = new System.Windows.Forms.CheckBox();
 			this.chkManageClient = new System.Windows.Forms.CheckBox();
+			this.txtPassword = new System.Windows.Forms.TextBox();
 			this.txtEmail = new System.Windows.Forms.TextBox();
 			this.txtPhone = new System.Windows.Forms.TextBox();
 			this.txtLastName = new System.Windows.Forms.TextBox();
 			this.txtFirstName = new System.Windows.Forms.TextBox();
+			this.label6 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.txtUserName = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.btnAddUser = new System.Windows.Forms.Button();
-			this.label6 = new System.Windows.Forms.Label();
-			this.txtPassword = new System.Windows.Forms.TextBox();
 			this.pnlInfo.SuspendLayout();
 			this.gbPernissions.SuspendLayout();
 			this.SuspendLayout();
@@ -116,10 +116,10 @@
 			// rbFemale
 			// 
 			this.rbFemale.AutoSize = true;
-			this.rbFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.rbFemale.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.rbFemale.Location = new System.Drawing.Point(197, 272);
 			this.rbFemale.Name = "rbFemale";
-			this.rbFemale.Size = new System.Drawing.Size(80, 24);
+			this.rbFemale.Size = new System.Drawing.Size(79, 25);
 			this.rbFemale.TabIndex = 29;
 			this.rbFemale.TabStop = true;
 			this.rbFemale.Text = "Female";
@@ -128,10 +128,10 @@
 			// rbMale
 			// 
 			this.rbMale.AutoSize = true;
-			this.rbMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.rbMale.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.rbMale.Location = new System.Drawing.Point(124, 275);
 			this.rbMale.Name = "rbMale";
-			this.rbMale.Size = new System.Drawing.Size(61, 24);
+			this.rbMale.Size = new System.Drawing.Size(63, 25);
 			this.rbMale.TabIndex = 28;
 			this.rbMale.TabStop = true;
 			this.rbMale.Text = "Male";
@@ -143,6 +143,17 @@
 			this.dateTimePicker1.Name = "dateTimePicker1";
 			this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
 			this.dateTimePicker1.TabIndex = 27;
+			// 
+			// btnAddUser
+			// 
+			this.btnAddUser.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnAddUser.Location = new System.Drawing.Point(421, 322);
+			this.btnAddUser.Name = "btnAddUser";
+			this.btnAddUser.Size = new System.Drawing.Size(107, 41);
+			this.btnAddUser.TabIndex = 26;
+			this.btnAddUser.Text = "Update";
+			this.btnAddUser.UseVisualStyleBackColor = true;
+			this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
 			// 
 			// gbPernissions
 			// 
@@ -198,6 +209,14 @@
 			this.chkManageClient.Text = "Manage Client";
 			this.chkManageClient.UseVisualStyleBackColor = true;
 			// 
+			// txtPassword
+			// 
+			this.txtPassword.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtPassword.Location = new System.Drawing.Point(124, 204);
+			this.txtPassword.Name = "txtPassword";
+			this.txtPassword.Size = new System.Drawing.Size(153, 33);
+			this.txtPassword.TabIndex = 24;
+			// 
 			// txtEmail
 			// 
 			this.txtEmail.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -229,6 +248,16 @@
 			this.txtFirstName.Name = "txtFirstName";
 			this.txtFirstName.Size = new System.Drawing.Size(153, 33);
 			this.txtFirstName.TabIndex = 20;
+			// 
+			// label6
+			// 
+			this.label6.AutoSize = true;
+			this.label6.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label6.Location = new System.Drawing.Point(24, 216);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(79, 21);
+			this.label6.TabIndex = 19;
+			this.label6.Text = "Password";
 			// 
 			// label5
 			// 
@@ -287,35 +316,6 @@
 			this.label1.Size = new System.Drawing.Size(94, 21);
 			this.label1.TabIndex = 36;
 			this.label1.Text = "User Name";
-			// 
-			// btnAddUser
-			// 
-			this.btnAddUser.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnAddUser.Location = new System.Drawing.Point(421, 322);
-			this.btnAddUser.Name = "btnAddUser";
-			this.btnAddUser.Size = new System.Drawing.Size(107, 41);
-			this.btnAddUser.TabIndex = 26;
-			this.btnAddUser.Text = "Update";
-			this.btnAddUser.UseVisualStyleBackColor = true;
-			this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
-			// 
-			// label6
-			// 
-			this.label6.AutoSize = true;
-			this.label6.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label6.Location = new System.Drawing.Point(24, 216);
-			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(79, 21);
-			this.label6.TabIndex = 19;
-			this.label6.Text = "Password";
-			// 
-			// txtPassword
-			// 
-			this.txtPassword.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtPassword.Location = new System.Drawing.Point(124, 204);
-			this.txtPassword.Name = "txtPassword";
-			this.txtPassword.Size = new System.Drawing.Size(153, 33);
-			this.txtPassword.TabIndex = 24;
 			// 
 			// frmUpdateUser
 			// 

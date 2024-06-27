@@ -45,6 +45,7 @@ namespace BankBusinessLayer
 			Email = "";
 			PinCode = "";
 			AccountBalance = 0;
+			DateOfBirth = DateTime.Now;
 			Mode = enMode.NewMode;
 		}
 

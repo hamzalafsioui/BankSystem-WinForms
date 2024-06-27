@@ -23,7 +23,7 @@ namespace BankDataAccessLayer
 				if (reader.Read())
 				{
 					IsFound = true;
-					ID = (int)reader["ID"];
+					ID = (int)reader["ClientID"];
 					FirstName = (string)reader["FirstName"];
 					LastName = (string)reader["LastName"];
 					if (reader["Phone"] != DBNull.Value)
@@ -62,14 +62,17 @@ namespace BankDataAccessLayer
 		{
 			int UserID = -1;
 			SqlConnection connection = new SqlConnection(ClsDataAccessSettings.ConnectionString);
-			string query = "INSERT INTO Clients(AccountNumber,FirstName,LastName,Gender,DateOfBirth,Phone,Email,PinCode,AccountBalance)" +
+			string query = "INSERT INTO BK.Clients(AccountNumber,FirstName,LastName,Gender,DateOfBirth,Phone,Email,PinCode,AccountBalance)" +
 				" VALUES (@AccountNumber,@FirstName,@LastName,@Gender,@DateOfBirth,@Phone,@Email,@PinCode,@AccountBalance);" +
 				"SELECT SCOPE_IDENTITY();";
 			SqlCommand command = new SqlCommand(query, connection);
 			command.Parameters.AddWithValue("@AccountNumber", AccountNumber);
 			command.Parameters.AddWithValue("@FirstName", FirstName);
 			command.Parameters.AddWithValue("@LastName", LastName);
-			command.Parameters.AddWithValue("@Phone", Phone);
+			if (Phone != null || Phone != "")
+				command.Parameters.AddWithValue("@Phone", Phone);
+			else
+				command.Parameters.AddWithValue("@Phone", DBNull.Value);
 			command.Parameters.AddWithValue("@Email", Email);
 			command.Parameters.AddWithValue("@Gender", Gender);
 			command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
@@ -156,7 +159,7 @@ namespace BankDataAccessLayer
 			DataTable dataTable = new DataTable();
 
 			SqlConnection connection = new SqlConnection(ClsDataAccessSettings.ConnectionString);
-			string query = "select * from BK.Clients";
+			string query = "select * from BK.ClientDetails_View";
 
 			SqlCommand command = new SqlCommand(query, connection);
 
