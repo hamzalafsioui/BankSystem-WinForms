@@ -11,16 +11,15 @@ namespace systemBank
 			InitializeComponent();
 			CustomizeDesign();
 		}
-		clsUser User;
 		public frmHome(clsUser user)
 		{
 
 			InitializeComponent();
 			CustomizeDesign();
-			User = user;
-			if (User.Login())
+			clsGlobal.GlobalUser = user;
+			if (clsGlobal.GlobalUser.Login())
 			{
-				MessageBox.Show("Welcome Back " + User.UserName);
+				MessageBox.Show("Welcome Back " + clsGlobal.GlobalUser.UserName);
 			}
 			else
 			{
@@ -278,15 +277,15 @@ namespace systemBank
 
 		private void frmHome_Load(object sender, EventArgs e)
 		{
-			if (User != null)
+			if (clsGlobal.GlobalUser != null)
 			{
-				GiveAccesses(User.Permissions);
+				GiveAccesses(clsGlobal.GlobalUser.Permissions);
 			}
 		}
 
 		private void btnLogout_Click(object sender, EventArgs e)
 		{
-			User = null; // Set User to null or perform any necessary cleanup
+			clsGlobal.GlobalUser = null; // Set User to null or perform any necessary cleanup
 
 			// Close the current frmHome form
 			this.Close();

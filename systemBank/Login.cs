@@ -1,5 +1,6 @@
 ﻿using BankBusinessLayer;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace systemBank
@@ -15,13 +16,24 @@ namespace systemBank
 		private void btnLogin_Click(object sender, EventArgs e)
 		{
 			string username = txtUserName.Text.Trim();
-			string password = txtPassword.Text;
+			//string password = txtPassword.Text;
+			string password = clsGlobal.ComputeHash(txtPassword.Text);
 
-			clsUser user = clsUser.FindByUserNameAndPassword(username, password);
 
-			if (user != null)
+			clsGlobal.GlobalUser = clsUser.FindByUserNameAndPassword(username, password);
+
+			if (clsGlobal.GlobalUser != null)
 			{
-				frmHome frm = new frmHome(user);
+				if (chkRememberMe.Checked)
+				{
+					clsGlobal.RememberUsernameAndPasswordInRegistry(username, txtPassword.Text);
+				}
+				else
+				{
+					//store empty username and password
+					clsGlobal.RemoveStoredCredentialFromRegistry();
+				}
+				frmHome frm = new frmHome(clsGlobal.GlobalUser);
 
 				this.Hide();
 				//this.Visible = false;
@@ -39,9 +51,16 @@ namespace systemBank
 
 		private void frmLogin_Load(object sender, EventArgs e)
 		{
+			string UserName = "", Password = "";
 
-			txtUserName.Text = "User";
-			txtPassword.Text = "1234";
+			if (clsGlobal.GetStoredCredentialFromRegistry(ref UserName, ref Password))
+			{
+				txtUserName.Text = UserName;
+				txtPassword.Text = Password;
+				chkRememberMe.Checked = true;
+			}
+			else
+				chkRememberMe.Checked = false;
 		}
 	}
 }

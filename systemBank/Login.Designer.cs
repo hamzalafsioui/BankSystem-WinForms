@@ -34,7 +34,7 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.txtPassword = new System.Windows.Forms.TextBox();
 			this.btnLogin = new System.Windows.Forms.Button();
-			this.checkBox1 = new System.Windows.Forms.CheckBox();
+			this.chkRememberMe = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -97,16 +97,16 @@
 			this.btnLogin.UseVisualStyleBackColor = true;
 			this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
 			// 
-			// checkBox1
+			// chkRememberMe
 			// 
-			this.checkBox1.AutoSize = true;
-			this.checkBox1.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.checkBox1.Location = new System.Drawing.Point(287, 283);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(139, 25);
-			this.checkBox1.TabIndex = 7;
-			this.checkBox1.Text = "Remember Me";
-			this.checkBox1.UseVisualStyleBackColor = true;
+			this.chkRememberMe.AutoSize = true;
+			this.chkRememberMe.Font = new System.Drawing.Font("MV Boli", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chkRememberMe.Location = new System.Drawing.Point(287, 283);
+			this.chkRememberMe.Name = "chkRememberMe";
+			this.chkRememberMe.Size = new System.Drawing.Size(139, 25);
+			this.chkRememberMe.TabIndex = 7;
+			this.chkRememberMe.Text = "Remember Me";
+			this.chkRememberMe.UseVisualStyleBackColor = true;
 			// 
 			// frmLogin
 			// 
@@ -114,7 +114,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
 			this.ClientSize = new System.Drawing.Size(619, 450);
-			this.Controls.Add(this.checkBox1);
+			this.Controls.Add(this.chkRememberMe);
 			this.Controls.Add(this.btnLogin);
 			this.Controls.Add(this.txtPassword);
 			this.Controls.Add(this.label2);
@@ -140,7 +140,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnLogin;
-		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.CheckBox chkRememberMe;
 	}
 }
 

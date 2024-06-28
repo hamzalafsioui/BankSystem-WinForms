@@ -77,7 +77,7 @@ namespace systemBank
 			User.Gender = (rbFemale.Checked) ? 'F' : 'M';
 			User.DateOfBirth = dateTimePicker1.Value;
 			User.Email = txtEmail.Text;
-			User.Password = txtPassword.Text;
+			User.Password = clsGlobal.ComputeHash(txtPassword.Text);
 
 		}
 

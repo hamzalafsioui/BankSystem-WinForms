@@ -55,6 +55,7 @@ namespace systemBank
 			else
 				User.Gender = 'M';
 			User.Email = txtEmail.Text;
+			User.Password = clsGlobal.ComputeHash(txtPassword.Text);
 			User.DateOfBirth = dateTimePicker1.Value;
 
 		}
@@ -64,7 +65,7 @@ namespace systemBank
 			txtFirstName.Text = User.FirstName;
 			txtLastName.Text = User.LastName;
 			txtEmail.Text = User.Email;
-			txtPassword.Text = User.Password;
+			txtPassword.Text = clsGlobal.ComputeHash(User.Password);
 			txtPhone.Text = User.Phone;
 			dateTimePicker1.Value = User.DateOfBirth;
 			if (User.Gender == 'M')
