@@ -338,7 +338,7 @@ namespace BankDataAccessLayer
 			DataTable dataTable = new DataTable();
 
 			SqlConnection connection = new SqlConnection(ClsDataAccessSettings.ConnectionString);
-			string query = "select * from BK.UserLogin";
+			string query = "SELECT * FROM BK.UserLogin ORDER BY LoginDate DESC";
 
 			SqlCommand command = new SqlCommand(query, connection);
 

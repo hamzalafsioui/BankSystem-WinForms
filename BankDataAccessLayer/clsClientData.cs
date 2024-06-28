@@ -375,33 +375,44 @@ namespace BankDataAccessLayer
 					connection.Open();
 					transaction = connection.BeginTransaction();
 
-					// Withdraw from the source account
-					string withdrawQuery = "UPDATE Clients SET AccountBalance -= @Amount WHERE AccountNumber = @FromAccountNumber;" +
-										   "INSERT INTO BK.Withdraw(AccountNumber, Amount, WithdrawDate) VALUES(@FromAccountNumber, @Amount, @dt);";
-					SqlCommand withdrawCommand = new SqlCommand(withdrawQuery, connection, transaction);
-					withdrawCommand.Parameters.AddWithValue("@AccountNumberFrom", FromAccountNumber);
-					withdrawCommand.Parameters.AddWithValue("@Amount", Amount);
-					withdrawCommand.Parameters.AddWithValue("@dt", dt);
-					withdrawCommand.ExecuteNonQuery();
+					// Transactions Query
+					string query = @"
+            BEGIN TRY
+                DECLARE @Account1Balance DECIMAL(10, 2);
+                SELECT @Account1Balance = AccountBalance FROM BK.Clients WHERE AccountNumber = @FromAccountNumber;
+                
+                IF @Account1Balance >= @TransferAmount
+					BEGIN
+						-- Subtract amount from Account 1
+						UPDATE BK.Clients 
+						SET AccountBalance = AccountBalance - @TransferAmount 
+						WHERE AccountNumber = @FromAccountNumber;
+                    
+                    -- Add amount to Account 2
+                    UPDATE BK.Clients 
+                    SET AccountBalance = AccountBalance + @TransferAmount 
+                    WHERE AccountNumber = @ToAccountNumber;
+                    
+                    -- Log the transaction
+                    INSERT INTO BK.Transfers (FromAccountNumber, ToAccountNumber, Amount, TransferDate) 
+                    VALUES (@FromAccountNumber, @ToAccountNumber, @TransferAmount, @TransferDate);
+					END
+					ELSE
+					BEGIN
+						THROW 50000, 'Transaction aborted: Insufficient funds in Account 1', 1;
+					END
+						END TRY
+					 BEGIN CATCH
+						 THROW;
+					END CATCH";
 
-					// Deposit into the destination account
-					string depositQuery = "UPDATE BK.Clients SET AccountBalance += @Amount WHERE AccountNumber = @ToAccountNumber;" +
-										  "INSERT INTO Deposit(AccountNumber, Amount, DepositDate) VALUES(@AccountNumberTo, @Amount, @dt);";
-					SqlCommand depositCommand = new SqlCommand(depositQuery, connection, transaction);
-					depositCommand.Parameters.AddWithValue("@ToAccountNumber", ToAccountNumber);
-					depositCommand.Parameters.AddWithValue("@Amount", Amount);
-					depositCommand.Parameters.AddWithValue("@dt", dt);
-					depositCommand.ExecuteNonQuery();
+					SqlCommand Command = new SqlCommand(query, connection, transaction);
+					Command.Parameters.AddWithValue("@FromAccountNumber", FromAccountNumber);
+					Command.Parameters.AddWithValue("@ToAccountNumber", ToAccountNumber);
+					Command.Parameters.AddWithValue("@TransferAmount", Amount);
+					Command.Parameters.AddWithValue("@TransferDate", dt);
 
-					// Transfer
-					string transferQuery = "INSERT INTO Transfers(FromAccountNumber, ToAccountNumber, Amount, TransferDate)" +
-										   "VALUES(@FromAccountNumber, @ToAccountNumber, @Amount, @dt)";
-					SqlCommand transferCommand = new SqlCommand(transferQuery, connection, transaction);
-					transferCommand.Parameters.AddWithValue("@AccountNumberFrom", FromAccountNumber);
-					transferCommand.Parameters.AddWithValue("@AccountNumberTo", ToAccountNumber);
-					transferCommand.Parameters.AddWithValue("@Amount", Amount);
-					transferCommand.Parameters.AddWithValue("@dt", dt);
-					transferCommand.ExecuteNonQuery();
+					Command.ExecuteNonQuery();
 
 					// Commit the transaction if everything is successful
 					transaction.Commit();
@@ -423,6 +434,7 @@ namespace BankDataAccessLayer
 				return false; // Insufficient balance in the source account
 			}
 		}
+
 
 
 

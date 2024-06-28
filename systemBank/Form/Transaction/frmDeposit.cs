@@ -49,6 +49,9 @@ namespace systemBank
 		private void ShowAllDeposits()
 		{
 			dgvDeposit.DataSource = clsClient.GetAllDeposits();
+			//USE Bank;
+			//select D.DepositID, D.AccountNumber, D.Amount, D.DepositDate,C.AccountBalance
+			//from BK.Deposit D inner join BK.Clients C on C.AccountNumber = D.AccountNumber
 			//dgvDeposit.Columns[1].Width = 100;
 			//dgvDeposit.Columns[2].Width = 200;
 			//dgvDeposit.Columns[3].Width = 300;
