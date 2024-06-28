@@ -451,7 +451,7 @@ namespace BankDataAccessLayer
 		public static DataTable GetAllCurrencies()
 		{
 			DataTable dataTable = new DataTable();
-			string query = "select * from Currencies";
+			string query = "select * from BK.Currencies";
 			SqlConnection connection = new SqlConnection(ClsDataAccessSettings.ConnectionString);
 			SqlCommand command = new SqlCommand(query, connection);
 
@@ -472,7 +472,7 @@ namespace BankDataAccessLayer
 		public static bool IsCurrencyExistsByCode(string CurrencyCode)
 		{
 			SqlConnection connection = new SqlConnection(ClsDataAccessSettings.ConnectionString);
-			string query = "select * from Currencies where Code = @CurrencyCode";
+			string query = "select * from BK.Currencies where Code = @CurrencyCode";
 			SqlCommand command = new SqlCommand(query, connection);
 			command.Parameters.AddWithValue("@CurrencyCode", CurrencyCode);
 			try
@@ -495,7 +495,7 @@ namespace BankDataAccessLayer
 		{
 			int RowsAffected = 0;
 			SqlConnection connection = new SqlConnection(ClsDataAccessSettings.ConnectionString);
-			string query = "Update Currencies SET Rate = @NewRate where Code = @CurrencyCode";
+			string query = "Update BK.Currencies SET Rate = @NewRate where Code = @CurrencyCode";
 
 			SqlCommand command = new SqlCommand(query, connection);
 
@@ -520,7 +520,7 @@ namespace BankDataAccessLayer
 			if (IsCurrencyExistsByCode(Code))
 			{
 
-				string query = "select * from Currencies where Code = @Code";
+				string query = "select * from BK.Currencies where Code = @Code";
 				SqlConnection connection = new SqlConnection(ClsDataAccessSettings.ConnectionString);
 				SqlCommand command = new SqlCommand(query, connection);
 				command.Parameters.AddWithValue("@Code", Code);
